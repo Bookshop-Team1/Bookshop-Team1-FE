@@ -1,8 +1,9 @@
 .App {
-    text-align: center;
-}
-
-.App-layout {
-    margin-left: 150px;
-    margin-right: 150px;
+  width: 100%;
+  height: 100svh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
 }
