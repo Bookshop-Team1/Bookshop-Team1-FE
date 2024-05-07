@@ -1,56 +1,59 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const SignUp = () => {
+const Login = () => {
   const [values, setValues] = useState({ email: "", password: "" });
   // eslint-disable-next-line no-unused-vars
   const [errors, setErrors] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
   const handleValues = (e) => {
-    setValues((prevValues) => ({ ...prevValues, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
   return (
     <div>
       <form>
-        <div>
-          <label htmlFor="email-text">Email</label>
+        <div className="group">
+          <label htmlFor="email">Email</label>
           <input
-            id="email-text"
+            id="email"
             type="text"
+            name="email"
             value={values.email}
             placeholder="abc@xyz.com"
-            name="email"
             onChange={handleValues}
           />
-          <p id="email-error">{errors.email}</p>
+          <span id="error">{errors.email}</span>
         </div>
-        <div>
-          <label htmlFor="password-text">Password</label>
+        <div className="group">
+          <label htmlFor="password">Password</label>
           <input
-            id="password-text"
+            id="password"
             type={showPassword ? "text" : "password"}
+            name="password"
             value={values.password}
             placeholder="Password"
-            name="password"
             onChange={handleValues}
           />
-          <button type="button" onClick={() => setShowPassword((prevPassword) => !prevPassword)}>
+          {/* <button type="button" onClick={() => setShowPassword((prevPassword) => !prevPassword)}>
             Show Password
+          </button> */}
+          <span id="error">{errors.password}</span>
+        </div>
+        <div>
+          <button type="submit" className="login">
+            Login
           </button>
-          <p id="password-error">{errors.password}</p>
-        </div>
-        <div>
-          <button type="submit">Sign Up</button>
-        </div>
-        <div>
-          Already have an account?
-          <Link to="/login"> Login</Link>
+          <div>
+            <span>Not have an account? </span>
+            <Link to="/sign-up"> Sign Up</Link>
+          </div>
         </div>
       </form>
     </div>
   );
 };
 
-export default SignUp;
+export default Login;
