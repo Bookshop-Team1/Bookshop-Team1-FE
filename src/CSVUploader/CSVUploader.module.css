@@ -1,0 +1,37 @@
+.upload-csv {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.upload-input {
+  display: none;
+}
+
+.login-btn {
+  width: 180px;
+  height: 35px;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  color: #253347;
+  outline: none;
+  border: 1px solid #253347;
+  border-radius: 5px;
+  box-shadow: 4px 4px 0 0 #253347;
+  cursor: pointer;
+}
+
+.login-btn:active {
+  box-shadow: none;
+}
+
+.csv-name {
+  font-size: 14px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
