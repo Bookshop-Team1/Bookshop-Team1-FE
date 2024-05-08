@@ -3,6 +3,8 @@ import styles from "./Login.module.css";
 import { useFormik } from "formik";
 import { loginSchema } from "../schema/formSchema";
 import { Link } from "react-router-dom";
+import CSVUploader from "../CSVUploader/CSVUploader";
+import { SIGNUP_ENDPOINT } from "../constants";
 
 const Login = () => {
   const handleSubmit = (values, { resetForm }) => {
@@ -23,6 +25,11 @@ const Login = () => {
   const handleToggle = () => {
     setShowPassword((prev) => !prev);
   };
+
+  // Need to add this (Do not remove this code)
+  // if (isLogin()) {
+  //   return <Navigate to={getFromLocalStorage(PATH_KEY) || "/"} />;
+  // }
 
   return (
     <form className={styles.form} onSubmit={formik.handleSubmit}>
@@ -75,13 +82,14 @@ const Login = () => {
           </span>
         ) : null}
       </div>
+      <CSVUploader />
       <div className={styles.cta}>
         <button type="submit" className={styles["login-btn"]}>
           Login
         </button>
         <div className={styles["sign-up"]}>
           <span className={styles["helper-text"]}>Not have an account? </span>
-          <Link to="/sign-up" className={styles["sign-up-btn"]}>
+          <Link to={SIGNUP_ENDPOINT} className={styles["sign-up-btn"]}>
             Sign Up
           </Link>
         </div>

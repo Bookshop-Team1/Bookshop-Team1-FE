@@ -3,6 +3,7 @@ import styles from "./SignUp.module.css";
 import { useFormik } from "formik";
 import { signupSchema } from "../schema/formSchema";
 import { Link } from "react-router-dom";
+import { LOGIN_ENDPOINT } from "../constants";
 
 const SignUp = () => {
   const handleSubmit = (values, { resetForm }) => {
@@ -176,7 +177,7 @@ const SignUp = () => {
         </button>
         <div className={styles["login"]}>
           <span className={styles["helper-text"]}>Already have an account? </span>
-          <Link to="/login" className={styles["login-btn"]}>
+          <Link to={LOGIN_ENDPOINT} className={styles["login-btn"]}>
             Login
           </Link>
         </div>

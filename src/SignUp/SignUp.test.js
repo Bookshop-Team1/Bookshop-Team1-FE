@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import user from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import SignUp from "./SignUp";
+import { LOGIN_ENDPOINT } from "../constants";
 
 const renderComponent = () => {
   render(
@@ -75,6 +76,6 @@ describe("SignUp", () => {
     const link = screen.getByRole("link", { name: /login/i });
 
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", "/login");
+    expect(link).toHaveAttribute("href", LOGIN_ENDPOINT);
   });
 });

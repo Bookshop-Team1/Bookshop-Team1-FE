@@ -5,6 +5,9 @@ import ListBooksContainer from "./Books/ListBooksContainer";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 import BookDetail from "./Books/BookDetail";
+import { LOGIN_ENDPOINT, SIGNUP_ENDPOINT } from "./constants";
+import PrivateRoute from "./PrivateRoutes";
+import Page404 from "./404/NotFound";
 
 function App() {
   return (
@@ -13,10 +16,13 @@ function App() {
       <div className="container">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<ListBooksContainer />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/sign-up" element={<SignUp />} />
+            <Route exact path="/" element={<ListBooksContainer />} />
+            <Route path={LOGIN_ENDPOINT} element={<Login />} />
+            <Route path={SIGNUP_ENDPOINT} element={<SignUp />} />
             <Route path="/books/:id" element={<BookDetail />} />
+            <Route path="*" element={<PrivateRoute />}>
+              <Route path="*" element={<Page404 />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </div>
