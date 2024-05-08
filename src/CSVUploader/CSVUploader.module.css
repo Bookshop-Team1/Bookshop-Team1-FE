@@ -1,14 +1,39 @@
 .upload-csv {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  flex-direction: column;
+  gap: 25px;
+  border: 2px solid #000;
+  padding: 25px;
+}
+
+.load-books-text {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .upload-input {
   display: none;
 }
 
-.login-btn {
+.browse-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.browse-file-text {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.browse-icon {
+  width: 26px;
+  height: 26px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.upload-btn {
   width: 180px;
   height: 35px;
   background: #fff;
@@ -22,7 +47,12 @@
   cursor: pointer;
 }
 
-.login-btn:active {
+.upload-btn:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.upload-btn:active:not(:disabled) {
   box-shadow: none;
 }
 
