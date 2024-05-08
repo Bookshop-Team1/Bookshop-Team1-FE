@@ -1,16 +1,16 @@
 import React from "react";
 import "./App.css";
-import ListBooksContainer from "./Books/ListBooksContainer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import BookDetail from "./Books/BookDetail";
+import ListBooksContainer from "./Books/ListBooksContainer";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
+import BookDetail from "./Books/BookDetail";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Book Store</h1>
-      <div className="App-layout">
+    <main className="App">
+      <h1 className="title">Bookshop</h1>
+      <div className="container">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<ListBooksContainer />} />
@@ -20,7 +20,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
-    </div>
+    </main>
   );
 }
 

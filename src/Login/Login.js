@@ -1,66 +1,76 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import styles from "./Login.module.css";
+import { useFormik } from "formik";
+import { loginSchema } from "../schema/formSchema";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [values, setValues] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState({ email: false, password: false });
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleValues = (e) => {
-    const { name, value } = e.target;
-    setValues((prevValues) => ({ ...prevValues, [name]: value }));
+  const handleSubmit = (values, { resetForm }) => {
+    resetForm();
   };
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: loginSchema,
+    onSubmit: handleSubmit,
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleToggle = () => {
     setShowPassword((prev) => !prev);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={formik.handleSubmit}>
       <div className={styles["group-email"]}>
-        <label htmlFor="email" className={styles.label}>
-          Email*
-        </label>
-        <input
-          id="email"
-          type="text"
-          name="email"
-          className={styles.input}
-          value={values.email}
-          placeholder="Enter your email"
-          onChange={handleValues}
-        />
-        {errors.email ? (
-          <span className={styles.error}>*Should follow the pattern abc@xyz.com</span>
+        <div className={styles.email}>
+          <label htmlFor="email" className={styles.label}>
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            placeholder="Enter your email"
+            className={styles.input}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+        </div>
+        {formik.touched.email && formik.errors.email ? (
+          <span className={styles.error}>Should follow the pattern abc@xyz.com</span>
         ) : null}
       </div>
       <div className={styles["group-password"]}>
-        <label htmlFor="password" className={styles.label}>
-          Password*
-        </label>
-        <input
-          id="password"
-          type={showPassword ? "text" : "password"}
-          name="password"
-          className={styles.input}
-          value={values.password}
-          placeholder="Enter your password"
-          onChange={handleValues}
-        />
-        <img
-          src={showPassword ? "/hide.svg" : "/show.svg"}
-          alt="Show password"
-          className={styles.icon}
-          onClick={handleToggle}
-        />
-        {errors.password ? (
+        <div className={styles.password}>
+          <label htmlFor="password" className={styles.label}>
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type={showPassword ? "text" : "password"}
+            placeholder="Enter your password"
+            className={styles.input}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <img
+            src={showPassword ? "/hide.svg" : "/show.svg"}
+            alt="Show password"
+            className={styles.icon}
+            onClick={handleToggle}
+          />
+        </div>
+        {formik.touched.password && formik.errors.password ? (
           <span className={styles.error}>
-            *Should be atleast 8 characters with one special character and one capital alphabet
+            Should be atleast 8 characters with one special character and one capital alphabet
           </span>
         ) : null}
       </div>
