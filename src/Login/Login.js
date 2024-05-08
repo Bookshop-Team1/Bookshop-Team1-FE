@@ -70,7 +70,8 @@ const Login = () => {
         </div>
         {formik.touched.password && formik.errors.password ? (
           <span className={styles.error}>
-            Should be atleast 8 characters with one special character and one capital alphabet
+            Should be atleast 8 characters with digits, one special character and one capital
+            alphabet
           </span>
         ) : null}
       </div>
