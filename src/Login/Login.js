@@ -3,7 +3,6 @@ import styles from "./Login.module.css";
 import { useFormik } from "formik";
 import { loginSchema } from "../schema/formSchema";
 import { Link } from "react-router-dom";
-import CSVUploader from "../CSVUploader/CSVUploader";
 import { SIGNUP_ENDPOINT } from "../constants";
 
 const Login = () => {
@@ -82,7 +81,6 @@ const Login = () => {
           </span>
         ) : null}
       </div>
-      <CSVUploader />
       <div className={styles.cta}>
         <button type="submit" className={styles["login-btn"]}>
           Login
