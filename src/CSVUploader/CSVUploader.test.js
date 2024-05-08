@@ -9,7 +9,7 @@ describe("CSVUploader component", () => {
 
   test("displays file name when a file is selected", () => {
     render(<CSVUploader />);
-    const fileInput = screen.getByText("Upload CSV").previousSibling;
+    const fileInput = screen.getByText("Browse file(s)").previousSibling;
 
     fireEvent.change(fileInput, {
       target: {
@@ -25,7 +25,7 @@ describe("CSVUploader component", () => {
 
   test("should handle the case of not choosing any csv", () => {
     render(<CSVUploader />);
-    const fileInput = screen.getByText("Upload CSV").previousSibling;
+    const fileInput = screen.getByText("Browse file(s)").previousSibling;
 
     fireEvent.change(fileInput, {
       target: {
@@ -47,7 +47,7 @@ describe("CSVUploader component", () => {
 
   test("clears selected file when remove button is clicked", () => {
     render(<CSVUploader />);
-    const fileInput = screen.getByText("Upload CSV").previousSibling;
+    const fileInput = screen.getByText("Browse file(s)").previousSibling;
 
     fireEvent.change(fileInput, {
       target: {
@@ -61,12 +61,12 @@ describe("CSVUploader component", () => {
     expect(screen.queryByText("test.csv")).not.toBeInTheDocument();
   });
 
-  test("clicks file input when Upload CSV button is clicked", () => {
+  test("clicks file input when Browse file(s) button is clicked", () => {
     render(<CSVUploader />);
-    const fileInput = screen.getByText("Upload CSV").previousSibling;
+    const fileInput = screen.getByText("Browse file(s)").previousSibling;
 
     const clickSpy = jest.spyOn(fileInput, "click");
-    fireEvent.click(screen.getByText("Upload CSV"));
+    fireEvent.click(screen.getByTestId("testBrowseFile"));
 
     expect(clickSpy).toHaveBeenCalled();
   });
