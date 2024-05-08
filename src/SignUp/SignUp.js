@@ -57,7 +57,7 @@ const SignUp = () => {
       </div>
       <div className={styles["group-username"]}>
         <div className={styles.username}>
-          <label htmlFor="username" className={styles.label}>
+          <label htmlFor="userName" className={styles.label}>
             Username
           </label>
           <input
@@ -77,7 +77,7 @@ const SignUp = () => {
       </div>
       <div className={styles["group-number"]}>
         <div className={styles.number}>
-          <label htmlFor="number" className={styles.label}>
+          <label htmlFor="phoneNumber" className={styles.label}>
             Phone Number
           </label>
           <input
@@ -145,7 +145,7 @@ const SignUp = () => {
       </div>
       <div className={styles["group-confirm-password"]}>
         <div className={styles["confirm-password"]}>
-          <label htmlFor="confirm-password" className={styles.label}>
+          <label htmlFor="confirmPassword" className={styles.label}>
             Confirm Password
           </label>
           <input

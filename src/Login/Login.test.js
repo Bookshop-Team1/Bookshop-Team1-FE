@@ -11,7 +11,7 @@ const renderComponent = () => {
   );
 };
 
-describe("login", () => {
+describe("Login", () => {
   it("should show email input", async () => {
     renderComponent();
 
