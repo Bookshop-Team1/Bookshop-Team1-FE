@@ -35,13 +35,13 @@ describe("SignUp", () => {
     }
   });
 
-  test("should show one number field", () => {
+  test("should show one number field", async () => {
     renderComponent();
 
     const label = screen.getByLabelText(/phone number/i);
     const input = screen.getByRole("spinbutton");
 
-    act(() => {
+    await act(() => {
       fireEvent.change(input, { target: { value: 9090909090 } });
     });
 

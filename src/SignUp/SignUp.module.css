@@ -45,8 +45,9 @@
   width: 325px;
   height: 40px;
   padding: 10px 15px;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   color: #253347;
   letter-spacing: -5%;
   caret-color: #253347;
@@ -106,6 +107,7 @@
   height: 35px;
   margin-left: -20px;
   background: #fff;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: #253347;

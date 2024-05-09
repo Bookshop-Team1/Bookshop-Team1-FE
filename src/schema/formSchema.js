@@ -33,3 +33,19 @@ export const signupSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Password is not matching!")
     .required(),
 });
+
+export const deliverySchema = Yup.object().shape({
+  email: Yup.string().email().required(),
+  address: Yup.string().required(),
+  pincode: Yup.number()
+    .required()
+    .test("should be exactly six digits", (pincode) => {
+      return pincode.toString().length === 6;
+    }),
+  country: Yup.string().required(),
+  phoneNumber: Yup.number()
+    .required()
+    .test("should be exactly ten digits", (phoneNumber) => {
+      return phoneNumber.toString().length === 10;
+    }),
+});

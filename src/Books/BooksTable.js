@@ -79,9 +79,15 @@ export default function BooksTable({ books }) {
               <td>{book.authorName}</td>
               <td>{`${book.price.amount} ${book.price.currency}`}</td>
               <td>
-                <button type="button" disabled={book.bookCount === 0} className={styles["buy-btn"]}>
-                  Buy
-                </button>
+                <Link to={`/books/purchase/${book.id}`}>
+                  <button
+                    type="button"
+                    disabled={book.bookCount === 0}
+                    className={styles["buy-btn"]}
+                  >
+                    Buy
+                  </button>
+                </Link>
               </td>
             </tr>
           );
