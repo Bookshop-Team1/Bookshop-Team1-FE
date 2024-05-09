@@ -47,6 +47,33 @@ jobs:
           name: build
           command: npm run build
 
+  deploy:
+    docker:
+      - image: cimg/node:20.13.0
+    steps:
+      - checkout
+      - run:
+          name: build react app and docker image
+          command: |
+            echo ${GCP_PROJECT_KEY} | base64 -d > $HOME/gcloud-service-key.json 
+            echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
+            echo 'export TAG=${CIRCLE_SHA1}' >> $BASH_ENV
+            echo 'export IMAGE_NAME=team1-fe' >> $BASH_ENV && source $BASH_ENV
+            docker build -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME:$TAG .
+      - gcp-gcr/gcr-auth:
+          gcloud-service-key: GOOGLE_CLOUD_KEYS
+          google-project-id: GOOGLE_PROJECT_ID
+          google-compute-zone: GOOGLE_COMPUTE_ZONE
+      - gcp-gcr/push-image:
+          google-project-id: GOOGLE_PROJECT_ID
+          registry-url: "us.gcr.io"
+          image: $IMAGE_NAME
+      - cloudrun/deploy:
+          platform: "managed"
+          image: "us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME"
+          service-name: "team1-fe-service"
+          region: $GOOGLE_COMPUTE_ZONE
+          unauthenticated: true
   
 workflows:
   build-test-deploy:
