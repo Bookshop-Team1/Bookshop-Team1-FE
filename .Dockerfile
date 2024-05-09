@@ -2,12 +2,18 @@
 FROM node:22-alpine as build
 
 WORKDIR /app
+CMD ["pwd"]
+CMD ["ls","-a"]
 
 COPY package*.json /app/
 
+CMD ["ls","-a"]
+CMD ["echo","Starting npm install"]
 RUN npm install
-
+CMD ["echo","Completed npm install"]
 COPY ./ /app/
+
+CMD ["ls","-a"]
 
 RUN npm run build
 
