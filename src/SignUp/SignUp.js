@@ -84,7 +84,7 @@ const SignUp = () => {
           <input
             id="phoneNumber"
             name="phoneNumber"
-            type="text"
+            type="number"
             placeholder="Enter your phone number"
             className={styles.input}
             value={formik.values.phoneNumber}
@@ -104,7 +104,7 @@ const SignUp = () => {
           <input
             id="email"
             name="email"
-            type="text"
+            type="email"
             placeholder="Enter your email"
             className={styles.input}
             value={formik.values.email}

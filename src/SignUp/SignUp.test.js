@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import user from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import SignUp from "./SignUp";
 import { LOGIN_ENDPOINT } from "../constants";
+import { act } from "react";
 
 const renderComponent = () => {
   render(
@@ -12,18 +13,16 @@ const renderComponent = () => {
   );
 };
 
-const normalFields = [
+const textFields = [
   { name: "Name", value: "john" },
   { name: "Username", value: "johnDoe" },
-  { name: "Phone Number", value: "9988776655" },
-  { name: "Email", value: "john@e.com" },
 ];
 
 describe("SignUp", () => {
-  it("should show four normal fields", async () => {
+  it("should show two text fields", async () => {
     renderComponent();
 
-    for (let field of normalFields) {
+    for (let field of textFields) {
       const label = screen.getByLabelText(field.name);
       const input = screen.getByRole("textbox", { name: field.name });
 
@@ -36,14 +35,49 @@ describe("SignUp", () => {
     }
   });
 
-  it("should show two password fields", () => {
+  it("should show one number field", async () => {
     renderComponent();
 
-    const passwordfields = screen.getAllByPlaceholderText(/Password/i);
+    const label = screen.getByLabelText(/phone number/i);
+    const input = screen.getByRole("spinbutton");
+
+    await act(() => {
+      fireEvent.change(input, { target: { value: 9090909090 } });
+    });
+
+    expect(label).toBeInTheDocument();
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveValue(9090909090);
+  });
+
+  it("should show one email field", async () => {
+    renderComponent();
+
+    const label = screen.getByLabelText(/email/i);
+    const input = screen.getByRole("textbox", { name: /email/i });
+
+    await user.click(input);
+    await user.keyboard("john@e.com");
+
+    expect(label).toBeInTheDocument();
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveValue("john@e.com");
+  });
+
+  it("should show two password fields", async () => {
+    renderComponent();
+
+    const passwordfields = screen.getAllByPlaceholderText(/password/i);
 
     expect(passwordfields).toHaveLength(2);
-    expect(passwordfields[0]).toBeInTheDocument();
-    expect(passwordfields[1]).toBeInTheDocument();
+
+    for (let password of passwordfields) {
+      await user.click(password);
+      await user.keyboard("John#12345");
+
+      expect(password).toBeInTheDocument();
+      expect(password).toHaveValue("John#12345");
+    }
   });
 
   it("should show password toggle button", () => {

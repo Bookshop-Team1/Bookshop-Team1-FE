@@ -16,13 +16,17 @@ export const loginSchema = Yup.object().shape({
 export const signupSchema = Yup.object().shape({
   name: Yup.string().required(),
   userName: Yup.string().required(),
-  phoneNumber: Yup.string().min(10).max(10).required(),
+  phoneNumber: Yup.number()
+    .required()
+    .test("should be exactly ten digits", (phoneNumber) => {
+      return phoneNumber.toString().length === 10;
+    }),
   email: Yup.string().email().required(),
   password: Yup.string()
     .min(8)
     .max(16)
     .required()
-    .test("Should satisfy required condition", (password) => {
+    .test("Should satisfy password pattern", (password) => {
       return passwordPattern.test(password);
     }),
   confirmPassword: Yup.string()
