@@ -13,7 +13,7 @@ const renderComponent = () => {
 };
 
 describe("Login", () => {
-  it("should show email input", async () => {
+  test("should show email input", async () => {
     renderComponent();
 
     const label = screen.getByLabelText(/email/i);
@@ -27,7 +27,7 @@ describe("Login", () => {
     expect(input).toHaveValue("abc@xyz.com");
   });
 
-  it("should show password input", async () => {
+  test("should show password input", async () => {
     renderComponent();
 
     const label = screen.getByLabelText(/password/i);
@@ -41,7 +41,7 @@ describe("Login", () => {
     expect(input).toHaveValue("password123");
   });
 
-  it("should show password toggle button", () => {
+  test("should show password toggle button", () => {
     renderComponent();
 
     const toggle = screen.getByRole("img", { name: /show password/i });
@@ -49,7 +49,7 @@ describe("Login", () => {
     expect(toggle).toBeInTheDocument();
   });
 
-  it("should show login button", () => {
+  test("should show login button", () => {
     renderComponent();
 
     const button = screen.getByRole("button", { name: /login/i });
@@ -57,7 +57,7 @@ describe("Login", () => {
     expect(button).toBeInTheDocument();
   });
 
-  it("should show signup link", () => {
+  test("should show signup link", () => {
     renderComponent();
 
     const link = screen.getByRole("link", { name: /sign up/i });

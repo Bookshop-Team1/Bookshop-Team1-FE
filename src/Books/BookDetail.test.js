@@ -5,7 +5,7 @@ import BookDetail from "./BookDetail";
 import { createMemoryHistory } from "history";
 
 describe("BookDetail", () => {
-  it("should show book name", function () {
+  test("should show book name", function () {
     const history = createMemoryHistory();
     history.push("book-details/1");
     const { getByText } = render(
@@ -13,7 +13,7 @@ describe("BookDetail", () => {
         <Routes>
           <Route path="/books/:id" element={<BookDetail />}></Route>
         </Routes>
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(getByText("Book detail with id 1")).toBeInTheDocument();

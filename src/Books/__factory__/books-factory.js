@@ -1,18 +1,34 @@
-import BookModel from "../BookModel";
-
 export default function booksFactory() {
   return [
-    new BookModel({
+    {
       id: 1,
-      name: "Outliers",
-      authorName: "Malcom Gladwell",
-      price: { amount: 200, currency: "INR" },
-    }),
-    new BookModel({
+      name: "book1",
+      authorName: "author1",
+      price: {
+        currency: "INR",
+        amount: 100,
+      },
+      bookCount: 100,
+    },
+    {
       id: 2,
-      name: "Harry Potter",
-      authorName: "J K Rowling",
-      price: { amount: 500, currency: "INR" },
-    }),
+      name: "book2",
+      authorName: "author2",
+      price: {
+        currency: "INR",
+        amount: 150,
+      },
+      bookCount: 120,
+    },
+    {
+      id: 3,
+      name: "book3",
+      authorName: "author3",
+      price: {
+        currency: "INR",
+        amount: 109,
+      },
+      bookCount: 0,
+    },
   ];
 }

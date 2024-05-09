@@ -1,0 +1,67 @@
+.books-container {
+  width: 800px;
+  border-collapse: collapse;
+}
+
+.row-head {
+  text-align: center;
+  height: 50px;
+  background-color: grey;
+}
+
+.row-head th {
+  position: relative;
+  width: 200px;
+}
+
+.row-head th span {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.row-head th img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.row {
+  height: 50px;
+  text-align: center;
+}
+
+.row:nth-child(odd) {
+  background-color: lightgray;
+}
+
+.link {
+  color: blue;
+}
+
+.buy-btn {
+  width: 100px;
+  height: 30px;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  color: #253347;
+  outline: none;
+  border: 1px solid #253347;
+  border-radius: 5px;
+  box-shadow: 4px 4px 0 0 #253347;
+  cursor: pointer;
+}
+
+.buy-btn:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.buy-btn:active:not(:disabled) {
+  box-shadow: none;
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+}

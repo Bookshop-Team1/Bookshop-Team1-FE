@@ -19,7 +19,7 @@ const textFields = [
 ];
 
 describe("SignUp", () => {
-  it("should show two text fields", async () => {
+  test("should show two text fields", async () => {
     renderComponent();
 
     for (let field of textFields) {
@@ -35,13 +35,13 @@ describe("SignUp", () => {
     }
   });
 
-  it("should show one number field", async () => {
+  test("should show one number field", () => {
     renderComponent();
 
     const label = screen.getByLabelText(/phone number/i);
     const input = screen.getByRole("spinbutton");
 
-    await act(() => {
+    act(() => {
       fireEvent.change(input, { target: { value: 9090909090 } });
     });
 
@@ -50,7 +50,7 @@ describe("SignUp", () => {
     expect(input).toHaveValue(9090909090);
   });
 
-  it("should show one email field", async () => {
+  test("should show one email field", async () => {
     renderComponent();
 
     const label = screen.getByLabelText(/email/i);
@@ -64,7 +64,7 @@ describe("SignUp", () => {
     expect(input).toHaveValue("john@e.com");
   });
 
-  it("should show two password fields", async () => {
+  test("should show two password fields", async () => {
     renderComponent();
 
     const passwordfields = screen.getAllByPlaceholderText(/password/i);
@@ -80,7 +80,7 @@ describe("SignUp", () => {
     }
   });
 
-  it("should show password toggle button", () => {
+  test("should show password toggle button", () => {
     renderComponent();
 
     const toggle = screen.getByRole("img", { name: /show password/i });
@@ -88,7 +88,7 @@ describe("SignUp", () => {
     expect(toggle).toBeInTheDocument();
   });
 
-  it("should show confirm password toggle button", () => {
+  test("should show confirm password toggle button", () => {
     renderComponent();
 
     const toggle = screen.getByRole("img", { name: /show confirm password/i });
@@ -96,7 +96,7 @@ describe("SignUp", () => {
     expect(toggle).toBeInTheDocument();
   });
 
-  it("should show signup button", () => {
+  test("should show signup button", () => {
     renderComponent();
 
     const button = screen.getByRole("button", { name: /sign up/i });
@@ -104,7 +104,7 @@ describe("SignUp", () => {
     expect(button).toBeInTheDocument();
   });
 
-  it("should show login link", () => {
+  test("should show login link", () => {
     renderComponent();
 
     const link = screen.getByRole("link", { name: /login/i });
