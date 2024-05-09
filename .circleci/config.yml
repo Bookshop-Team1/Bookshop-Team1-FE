@@ -55,7 +55,6 @@ jobs:
       - run:
           name: build react app and docker image
           command: |
-            npm run build
             echo ${GCP_PROJECT_KEY} | base64 -d > $HOME/gcloud-service-key.json 
             echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
             echo 'export TAG=${CIRCLE_SHA1}' >> $BASH_ENV
