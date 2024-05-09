@@ -52,6 +52,8 @@ jobs:
       - image: cimg/node:20.13.0
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: build react app and docker image
           command: |
