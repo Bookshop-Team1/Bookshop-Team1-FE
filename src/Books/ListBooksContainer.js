@@ -1,57 +1,19 @@
-import React from "react";
-// import BookModel from "./BookModel";
+import React, { useEffect, useState } from "react";
+import BookModel from "./BookModel";
 import BooksTable from "./BooksTable";
 
-const books = {
-  status: "OK",
-  data: [
-    {
-      id: 1,
-      name: "book1",
-      authorName: "author1",
-      price: {
-        currency: "INR",
-        amount: 100,
-      },
-      bookCount: 100,
-    },
-    {
-      id: 2,
-      name: "book2",
-      authorName: "author2",
-      price: {
-        currency: "INR",
-        amount: 150,
-      },
-      bookCount: 120,
-    },
-    {
-      id: 3,
-      name: "book3",
-      authorName: "author3",
-      price: {
-        currency: "INR",
-        amount: 109,
-      },
-      bookCount: 0,
-    },
-  ],
-};
-
 function ListBooksContainer() {
-  // const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([]);
 
-  // useEffect(() => {
-  //   BookModel.fetchAll().then((books) => {
-  //     setBooks(books);
-  //   });
-  // }, []);
+  useEffect(() => {
+    BookModel.fetchAll().then((response) => {
+      // eslint-disable-next-line no-console
+      console.log("response", response);
+      setBooks(response?.data);
+    });
+  }, []);
 
-  return (
-    <div>
-      <BooksTable books={books.data} />
-    </div>
-  );
+  return <BooksTable books={books} />;
 }
 
 export default ListBooksContainer;

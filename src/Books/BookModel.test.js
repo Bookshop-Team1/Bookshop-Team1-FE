@@ -6,9 +6,9 @@ jest.mock("axios");
 
 describe("BookModel", () => {
   test("should fetch all books from api", async () => {
-    axios.get = jest.fn().mockResolvedValue({ data: booksFactory() });
+    axios.get = jest.fn().mockResolvedValue(booksFactory());
     const books = await BookModel.fetchAll();
-    const url = "http://some-url/books";
+    const url = "http://localhost:8080/books";
     const headers = { auth: { password: "foobar", username: "foo@test.com" } };
     expect(axios.get).toHaveBeenCalledWith(url, headers);
     expect(books).toHaveLength(3);

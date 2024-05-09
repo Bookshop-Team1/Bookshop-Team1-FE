@@ -18,7 +18,7 @@ describe("ListBooks", () => {
     );
 
     await waitFor(() => {
-      // expect(BookModel.fetchAll).toHaveBeenCalled();
+      expect(BookModel.fetchAll).toHaveBeenCalled();
       expect(getByText("book1")).toBeInTheDocument();
     });
   });

@@ -21,7 +21,7 @@ describe("BooksTable", () => {
   test("should display single book when there is a book", function () {
     const { getByText } = render(
       <MemoryRouter>
-        <BooksTable books={[booksFactory()[0]]} />
+        <BooksTable books={[booksFactory().data[0]]} />
       </MemoryRouter>,
     );
 
@@ -33,7 +33,7 @@ describe("BooksTable", () => {
   test("should display multiple row when there is a book", function () {
     const { getByText } = render(
       <MemoryRouter>
-        <BooksTable books={booksFactory()} />
+        <BooksTable books={booksFactory().data} />
       </MemoryRouter>,
     );
 
