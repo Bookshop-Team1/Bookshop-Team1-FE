@@ -1,5 +1,5 @@
 #React app image
-FROM node:lts-alpine 
+FROM node:lts-alpine as build
 
 WORKDIR /app
 
