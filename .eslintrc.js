@@ -21,7 +21,7 @@ module.exports = {
   },
   plugins: ["react", "prettier"],
   rules: {
-    "no-console": "warn",
+    // "no-console": "warn",
     // "import/first": "error",
     "react/prop-types": 0,
     "linebreak-style": ["error", "unix"],
