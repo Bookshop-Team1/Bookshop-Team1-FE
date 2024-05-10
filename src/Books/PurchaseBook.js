@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "./PurchaseBook.module.css";
 // import { useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import { deliverySchema } from "../schema/formSchema";
+import OrderSummary from "../OrderSummary/OrderSummary";
 
 const PurchaseBook = () => {
   /* const { id } = useParams(); ID which will be used to fetch details from API */
+  const [orderSummary, setOrderSummary] = useState(false);
+  const [deliveryDetails, setDeliveryDetails] = useState({});
 
   const handleSubmit = (values, { resetForm }) => {
+    setOrderSummary(true);
+    setDeliveryDetails(values);
     resetForm();
   };
 
@@ -138,6 +144,11 @@ const PurchaseBook = () => {
           View Order summary
         </button>
       </form>
+      {orderSummary &&
+        createPortal(
+          <OrderSummary deliveryDetails={deliveryDetails} setOrderSummary={setOrderSummary} />,
+          document.getElementById("order-summary"),
+        )}
     </section>
   );
 };
