@@ -5,16 +5,11 @@ import BookDetail from "./BookDetail";
 
 function BookDetailsContainer() {
   let { id } = useParams();
-  const [bookDetails, setBookDetails] = useState({
-    
-});
-
+  const [bookDetails, setBookDetails] = useState({});
 
   useEffect(() => {
     async function fetchBookDetails() {
       const response = await baseApi.get(`/books/${id}`);
-      // eslint-disable-next-line no-console
-      
       setBookDetails(response?.data);
     }
     fetchBookDetails();

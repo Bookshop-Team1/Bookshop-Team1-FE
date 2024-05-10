@@ -4,7 +4,6 @@ import { LOGGED_IN_USER_INFO } from "./constants";
 
 function authHeaders() {
   const userInfo = getFromLocalStorage(LOGGED_IN_USER_INFO);
-  console.log(userInfo,"userinfo")
   return {
     Authorization: `Bearer ${userInfo}`,
   };

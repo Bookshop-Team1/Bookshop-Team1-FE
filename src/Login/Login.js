@@ -2,39 +2,28 @@ import { useState } from "react";
 import styles from "./Login.module.css";
 import { useFormik } from "formik";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loginSchema } from "../schema/formSchema";
 import { Link } from "react-router-dom";
-import { SIGNUP_ENDPOINT,LOGGED_IN_USER_INFO,BOOKS_ENDPOINT } from "../constants";
+import { SIGNUP_ENDPOINT, LOGGED_IN_USER_INFO, BOOKS_ENDPOINT } from "../constants";
 import baseApi from "../BaseApi";
 import { setValueToLocalStorage } from "../services/localStorage";
 
 const Login = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values, "values 1")
-    loginUser(values)
+    loginUser(values);
     resetForm();
-    navigate(BOOKS_ENDPOINT)
-    //return <Navigate to={BOOKS_ENDPOINT} />;
+    navigate(BOOKS_ENDPOINT);
   };
 
   async function loginUser(values) {
-    console.log(values, 'values')
     const request = {
       username: values.email,
-      password: values.password
-    }
-    const response = await baseApi.authenticate('/users/authenticate',
-      request);
-
-  console.log(response,"respnse")
-  localStorage.setItem(LOGGED_IN_USER_INFO, response.data?.token)
-    //setValueToLocalStorage(LOGGED_IN_USER_INFO, response.data?.data?.token);
-    // eslint-disable-next-line no-console
-   
-
-    //setBookDetails(response?.data?.data);
+      password: values.password,
+    };
+    const response = await baseApi.authenticate("/users/authenticate", request);
+    setValueToLocalStorage(LOGGED_IN_USER_INFO, response.data?.token);
   }
   const formik = useFormik({
     initialValues: {
@@ -108,7 +97,7 @@ const Login = () => {
         ) : null}
       </div>
       <div className={styles.cta}>
-        <button type="submit" className={styles["login-btn"]} >
+        <button type="submit" className={styles["login-btn"]}>
           Login
         </button>
         <div className={styles["sign-up"]}>

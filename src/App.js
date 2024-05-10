@@ -4,7 +4,6 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ListBooksContainer from "./Books/ListBooksContainer";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
-import BookDetail from "./Books/BookDetail";
 import {
   BOOKS_ENDPOINT,
   LOAD_BOOKS_ENDPOINT,

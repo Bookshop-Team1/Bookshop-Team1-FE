@@ -7,31 +7,23 @@ import { LOGIN_ENDPOINT } from "../constants";
 import baseApi from "../BaseApi";
 
 const SignUp = () => {
-  
   const [isSignUp, setSignUp] = useState(false);
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values,'values')
-    signUser(values)
+    signUser(values);
     resetForm();
   };
 
   async function signUser(values) {
-    const request={
-      email:values.email,
-      password:values.password,
-      firstName:values.name,
+    const request = {
+      email: values.email,
+      password: values.password,
+      firstName: values.name,
 
-      mobileNumber:values.phoneNumber,
-      
-  }
-    const response = await baseApi.authenticate('/users/create',
-    request);
+      mobileNumber: values.phoneNumber,
+    };
+    await baseApi.authenticate("/users/create", request);
     setSignUp(true);
-    // eslint-disable-next-line no-console
-    console.log("response", response);
-    
-    //setBookDetails(response?.data?.data);
   }
   const formik = useFormik({
     initialValues: {
