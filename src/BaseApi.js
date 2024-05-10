@@ -12,6 +12,8 @@ function authHeaders() {
 
 function buildUrl(path) {
   const env = runtimeEnv();
+  console.log(`ENV ${JSON.stringify(env)}`);
+  console.log(`PROCESS ENV ${JSON.stringify(process.env)}`);
   return `${env.REACT_APP_API_URL}${path}`;
 }
 
