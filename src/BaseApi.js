@@ -1,4 +1,3 @@
-import runtimeEnv from "@mars/heroku-js-runtime-env";
 import axios from "axios";
 
 function authHeaders() {
@@ -11,11 +10,8 @@ function authHeaders() {
 }
 
 function buildUrl(path) {
-  const env = runtimeEnv();
-  console.log(`ENV ${JSON.stringify(env)}`);
-  console.log(`PROCESS ENV ${JSON.stringify(process.env)}`);
-  if (process.env.NODE_ENV === "production") return `${env.REACT_APP_API_PROD_URL}${path}`;
-  else return `${env.REACT_APP_API_URL}${path}`;
+  if (process.env.NODE_ENV === "production") return `${process.env.REACT_APP_API_PROD_URL}${path}`;
+  return `${process.env.REACT_APP_API_URL}${path}`;
 }
 
 class BaseApi {
