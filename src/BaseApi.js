@@ -14,6 +14,9 @@ function buildUrl(path) {
   const env = runtimeEnv();
   console.log(`ENV ${JSON.stringify(env)}`);
   console.log(`PROCESS ENV ${JSON.stringify(process.env)}`);
+  if(process.env.NODE_ENV=='prod')
+    return `${env.REACT_APP_API_PROD_URL}${path}`;
+  else
   return `${env.REACT_APP_API_URL}${path}`;
 }
 
