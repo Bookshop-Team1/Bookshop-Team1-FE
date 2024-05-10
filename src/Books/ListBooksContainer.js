@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import BookModel from "./BookModel";
 import BooksTable from "./BooksTable";
+import baseApi from "../BaseApi";
 
 function ListBooksContainer() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    BookModel.fetchAll().then((response) => {
+    async function fetchData() {
+      const response = await baseApi.get("/books");
       // eslint-disable-next-line no-console
       console.log("response", response);
       setBooks(response?.data);
-    });
+    }
+    fetchData();
   }, []);
 
   return <BooksTable books={books} />;

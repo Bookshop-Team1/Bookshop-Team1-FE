@@ -1,13 +1,13 @@
 import React from "react";
 import { render, waitFor } from "@testing-library/react";
 import ListBooksContainer from "./ListBooksContainer";
-import BookModel from "./BookModel";
 import booksFactory from "./__factory__/books-factory";
 import { MemoryRouter } from "react-router-dom";
+import baseApi from "../BaseApi";
 
 describe("ListBooks", () => {
   beforeEach(() => {
-    BookModel.fetchAll = jest.fn().mockResolvedValue(booksFactory());
+    baseApi.get = jest.fn().mockResolvedValue(booksFactory());
   });
 
   test("should fetch the books", async function () {
@@ -18,7 +18,7 @@ describe("ListBooks", () => {
     );
 
     await waitFor(() => {
-      expect(BookModel.fetchAll).toHaveBeenCalled();
+      expect(baseApi.get).toHaveBeenCalled();
       expect(getByText("book1")).toBeInTheDocument();
     });
   });
