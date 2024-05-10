@@ -16,6 +16,7 @@ import PrivateRoute from "./PrivateRoutes";
 import Page404 from "./404/NotFound";
 import LoadBooks from "./Books/LoadBooks";
 import PurchaseBook from "./Books/PurchaseBook";
+import BookDetailsContainer from "./Books/BookDetailsContainer";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
             <Route path={LOGIN_ENDPOINT} element={<Login />} />
             <Route path={SIGNUP_ENDPOINT} element={<SignUp />} />
             <Route path={LOAD_BOOKS_ENDPOINT} element={<LoadBooks />} />
-            <Route path={`${BOOKS_ENDPOINT}/:id`} element={<BookDetail />} />
+            <Route path={`${BOOKS_ENDPOINT}/:id`} element={<BookDetailsContainer />} />
             <Route path={`${PURCHASE_BOOK_ENDPOINT}/:id`} element={<PurchaseBook />} />
             <Route exact path="/" element={<Navigate to={BOOKS_ENDPOINT} replace />} />
             <Route path="*" element={<PrivateRoute />}>

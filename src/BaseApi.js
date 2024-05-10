@@ -1,11 +1,12 @@
 import axios from "axios";
+import { getFromLocalStorage } from "./services/localStorage";
+import { LOGGED_IN_USER_INFO } from "./constants";
 
 function authHeaders() {
+  const userInfo = getFromLocalStorage(LOGGED_IN_USER_INFO);
+  console.log(userInfo,"userinfo")
   return {
-    auth: {
-      username: "foo@test.com",
-      password: "foobar",
-    },
+    Authorization: `Bearer ${userInfo}`,
   };
 }
 
@@ -16,11 +17,15 @@ function buildUrl(path) {
 
 class BaseApi {
   get(path) {
-    return axios.get(buildUrl(path), authHeaders());
+    return axios.get(buildUrl(path), { headers: authHeaders() });
   }
 
   post(path, data) {
-    return axios.post(buildUrl(), data, authHeaders());
+    return axios.post(buildUrl(path), data, { headers: authHeaders() });
+  }
+
+  authenticate(path, data) {
+    return axios.post(buildUrl(path), data);
   }
 }
 
