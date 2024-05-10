@@ -10,7 +10,7 @@ function ListBooksContainer() {
       const response = await baseApi.get("/books");
       // eslint-disable-next-line no-console
       console.log("response", response);
-      setBooks(response?.data);
+      setBooks(response?.data?.data);
     }
     fetchData();
   }, []);

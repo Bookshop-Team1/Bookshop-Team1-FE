@@ -7,7 +7,7 @@ import baseApi from "../BaseApi";
 
 describe("ListBooks", () => {
   beforeEach(() => {
-    baseApi.get = jest.fn().mockResolvedValue(booksFactory());
+    baseApi.get = jest.fn().mockResolvedValue({ data: booksFactory() });
   });
 
   test("should fetch the books", async function () {
