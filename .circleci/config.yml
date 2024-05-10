@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   gcp-gcr: circleci/gcp-gcr@0.6.1
   cloudrun: circleci/gcp-cloud-run@1.0.0
+  gcp-cli: circleci/gcp-cli@2.4.1
 
 jobs:
   test:
@@ -54,10 +55,6 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
-      - run:
-          name: Install Google Cloud SDK
-          command: |
-            curl -sSL https://packages.cloud.google.com/apt/install-sdk.sh | bash -s -- --disable-prompts
       - run:
           name: build react app and docker image
           command: |
